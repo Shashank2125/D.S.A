@@ -6,18 +6,15 @@ class Solution(object):
         """
         n=len(isConnected)
         visited=[False]*n
-        count=0
-        def dfs(node,visited):
+        def dfs(node):
             visited[node]=True
-            for neigh in range(n):
-                if not visited[neigh] and isConnected[node][neigh]==1:
-                    dfs(neigh,visited)
-        #for province in cities
+            for nei in range(n):
+                if isConnected[node][nei]==1 and not visited[nei]:
+                    dfs(nei)
+        provinces=0
         for i in range(n):
-            #if not visited
-            if visited[i]==False:
-                #we can enter this so count+=1
-                count+=1
-                #pass the province number
-                dfs(i,visited)
-        return count
+            if not visited[i]:
+                dfs(i)
+                provinces+=1
+        return provinces
+        
